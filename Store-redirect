@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get the App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    padding: 40px;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .qr-code {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+  }
+  .footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #777;
+  }
+</style>
+<script>
+function redirectToStore() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(userAgent)) {
+    // Android device
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.blockchainvault';
+  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    // iOS device
+    window.location.href = 'https://itunes.apple.com/us/app/pi-network/id1445472541';
+  } else {
+    // Not a mobile device - show instructions and QR code
+    document.getElementById('redirecting').style.display = 'none';
+    document.getElementById('desktop-instructions').style.display = 'block';
+  }
+}
+</script>
+</head>
+<body onload="redirectToStore()">
+  <div class="container">
+    <div id="redirecting">
+      <h1>Redirecting...</h1>
+      <p>Please wait while we take you to the app store.</p>
+    </div>
+
+    <div id="desktop-instructions" style="display:none;">
+      <h1>Open this page on your phone</h1>
+      <p>Scan this QR code to download the app on your mobile device.</p>
+      <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fyourusername.github.io%2Fstore-redirect%2F" alt="QR code to scan">
+      <p>Or visit this link on your phone:</p>
+      <p><a href="https://yourusername.github.io/store-redirect/" target="_blank">https://yourusername.github.io/store-redirect/</a></p>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2025 Your Company Name
+  </div>
+</body>
+</html>
